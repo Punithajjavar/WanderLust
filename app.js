@@ -154,7 +154,7 @@ app.post("/listings/:id/reviews",validateReview,wrapAsync(async(req,res)=>{
 
   await newReview.save();
   await listing.save();
-
+  await listing.save({validateBeforeSave:false});
   res.redirect(`/listings/${listing._id}`);
 
 }));
