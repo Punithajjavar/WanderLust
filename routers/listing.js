@@ -23,7 +23,7 @@ const validateListing =(req,res,next)=>{
 
 router.get("/",wrapAsync(async (req,res)=>{
     const allListing= await Listing.find({});
-         res.("listings/index.ejs",{allListing});
+         res.render("listings/index.ejs",{allListing});
  }));
  
  //new route
