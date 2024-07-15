@@ -1,7 +1,7 @@
 const express =require("express");
 const router =express.Router();
 const wrapAsync =require("../utils/wrapAsync.js");
-const {listingSchema,reviewSchema}=require("../schema.js");
+const {listingSchema}=require("../schema.js");
 const ExpressError =require("../utils/ExpressError.js");
 const Listing=require("../models/listing.js");
 
@@ -54,6 +54,7 @@ router.post("/", validateListing,wrapAsync(async(req,res,next)=>{
        
          const newlisting=new Listing(req.body.listing);
          await newlisting.save();
+         req.flash("success","new listing created:");
          res.redirect("/listings");
  })
  );

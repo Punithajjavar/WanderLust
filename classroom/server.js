@@ -1,7 +1,13 @@
 const express =require("express");
 const app=express();
 
+app.get("/getcookies",(req,res)=>{
+    res.cookie("a","b");
+    res.send("sent you some cookies");
+})
+
 app.get("/",(req,res)=>{
+   
     res.send("Hi,I am root");
 })
 app.listen(3000,()=>{
