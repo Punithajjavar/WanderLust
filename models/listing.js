@@ -9,9 +9,8 @@ const listingSchema=new Schema({
     },
     description:String,
     image:{
-        type:String,
-        default:"https://unsplash.com/photos/gray-wooden-house-178j8tJrNlc",
-        set:(v)=>v===""?"defalut link":v,
+        url:String,
+        filename:String,
     },
     price:Number,
     location:String,

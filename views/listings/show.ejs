@@ -1,4 +1,7 @@
 <% layout("/layouts/boilerplate") %>
+<script>
+    const mapToken ="<%= process.env.MAP_TOKEN %>";
+</script>
 <div class="row mt-3">
     <div class="col-8 ">
         
@@ -7,7 +10,7 @@
  
     <div class="card col-6 offset-3 show-card listing-card">
         <br>
-            <img src="<%= listing.image %>" class="card-img-top show-img" alt="listing img">
+            <img src="<%= listing.image.url %>" class="card-img-top show-img" alt="listing img">
             <div class="card-body">
               <p class="card-text"> Owned by <i><%= listing.owner.username %></i></p>
                
@@ -41,6 +44,7 @@
 <div class="col-8 offset-3 mb-3">
     <% if(curruser) {%>
     <h4>leave a review</h4>
+    <hr>
      <form action="/listings/<%= listing.id %>/reviews" method="post">
         
         <div class="mb-3 mt-3">
@@ -72,10 +76,11 @@
 <button class="btn btn-outline-dark">submit</button>
      </form>
      <% } %>
- <hr>
-     <p><b>All Reviews</b></p>
+ 
+ <% if(listing.reviews.lenght>0){ %>    
 
      <div class="row ">
+        <p><b>All Reviews</b></p>
    
 <% for(review of listing.reviews) {%>
    <div class="card col-5 ms-3 mb-3">
@@ -98,5 +103,14 @@
    </div>
   <% } %>
 </div>
+<% } %>
 </div>
+<div class="col-8 offset-3 mb-3">
+    <h3>Where you'll be</h3>
+    <div id="map"></div>
+    
 </div>
+
+</div>
+
+<script src="/js/map.js"></script>
