@@ -21,6 +21,10 @@ const listingRouter =require("./routers/listing.js");
 const reviewRouter =require("./routers/review.js");
 const userRouter =require("./routers/user.js");
 
+const bodyParser = require("body-parser");
+const jwt =require("jsonwebtoken");
+const JWT_SECRT=process.env.JWT_SECRET || 'your_jwt_secret';
+
 
 
 const dbUrl =process.env.ATLASDB_URL;
@@ -91,6 +95,10 @@ app.use((req,res,next)=>{
     res.locals.curruser =req.user;
     next();
 });
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:
+true}));
 
 // app.get("/demouser",async(req,res)=>{
 //     let fakeUser = new User({
